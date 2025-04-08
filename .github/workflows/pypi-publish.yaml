@@ -9,6 +9,7 @@ permissions:
   contents: read   # Required for actions/checkout
 
 jobs:
+  if: false  # disables the job
   publish:
     name: Build and publish to PyPI
     runs-on: ubuntu-latest
