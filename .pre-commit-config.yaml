@@ -1,0 +1,25 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: check-yaml
+      - id: debug-statements
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+        exclude: ^tests/fixtures/
+
+  - repo: local
+    hooks:
+    -   id: ruff-format
+        name: ruff-format
+        entry: ruff format jointly_hic tests
+        language: system
+        types: [python]
+
+  - repo: local
+    hooks:
+    -   id: hatch-fix
+        name: hatch-fix
+        entry: hatch run fix
+        language: system
+        types: [python]

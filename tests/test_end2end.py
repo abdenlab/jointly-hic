@@ -62,7 +62,7 @@ def test_end_to_end_decomposition(configuration, method):
         embeddings = pd.read_parquet(post_config.parquet_file)
         assert np.all(
             embeddings.columns
-            == ["chrom", "start", "end", "weight", "good_bin", "filename"] + [f"{method}{i+1}" for i in range(32)]
+            == ["chrom", "start", "end", "weight", "good_bin", "filename"] + [f"{method}{i + 1}" for i in range(32)]
         )
         assert embeddings.shape == (10560, 38)
         assert embeddings.dropna().shape == (9498, 38)

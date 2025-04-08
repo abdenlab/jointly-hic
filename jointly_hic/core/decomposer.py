@@ -359,7 +359,7 @@ class JointlyDecomposer:
 
         # Move embeddings into array of original shape
         full_embeddings = np.zeros((hi - lo, self.configuration.components), dtype=np.float64)
-        full_embeddings[:] = np.NaN
+        full_embeddings[:] = np.nan
         full_embeddings[np.logical_not(self.union_bad_bins)] = embeddings
 
         # Add bin names and convert to dataframe

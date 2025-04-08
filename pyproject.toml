@@ -7,20 +7,21 @@ name = "jointly-hic"
 description = "Out-of-core jointly decompose Hi-C contact matrices"
 authors = [
     {name = "Thomas Reimonn", email = "thomas.reimonn@umassmed.edu"},
+    {name = "Nezar Abdennur", email = "nezar.abdennur@umassmed.edu"},
 ]
 readme = "README.md"
-license = {text = "BSD-3-Clause"}
+license = {text = "GPL-3.0"}
 requires-python = ">=3.9"
 dynamic = ["version"]
 dependencies = [
-    "bioframe>=0.5.0",
-    "cooler>=0.9.3",
-    "cooltools>=0.6",
+    "bioframe",
+    "cooler>=0.10.3",
+    "cooltools>=0.7.1",
     "cython>3.0.5",
-    "datashader",
+    "datashader>=0.17.0",
     "leidenalg>=0.10.1",
-    "numpy>=1.24",
-    "pandas",
+    "numpy>=2.1",
+    "pandas>=2.1",
     "pyarrow>=14",
     "pydantic>=2.4.2",
     "scikit-learn>=1.3.2",
@@ -54,16 +55,6 @@ fix = "ruff check --fix --exit-non-zero-on-fix jointly_hic"
 lint = "ruff check --exit-non-zero-on-fix jointly_hic"
 test = "pytest --cov=jointly_hic --cov-report=html --cov-report=term-missing --cov-fail-under=90 --color=yes --verbose tests"
 
-[tool.hatch.envs.test]
-features = ["dev", "notebook"]
-
-[[tool.hatch.envs.test.matrix]]
-python = ["3.10", "3.11", "3.12"]
-
-[tool.hatch.envs.lint]
-features = ["dev"]
-detached = true
-
 [tool.ruff]
 exclude = [
     "__init__.py",
@@ -82,7 +73,6 @@ lint.extend-select = [
 ]
 line-length = 120
 indent-width = 4
-target-version = "py311"
 lint.ignore = ["S101", "D203", "D213"]
 
 
@@ -90,4 +80,4 @@ lint.ignore = ["S101", "D203", "D213"]
 profile = "black"
 line_length = 120
 skip_gitignore = true
-known_first_party = "joint_pca_hic"
+known_first_party = "jointly_hic"

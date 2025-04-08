@@ -1,0 +1,34 @@
+name: Run Pytest
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10", "3.11", "3.12", "3.13"]
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v3
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        python -m pip install pytest pytest-mock pytest-cov ruff
+        pip install .
+    - name: Lint with ruff
+      run: |
+        ruff check --exit-non-zero-on-fix jointly_hic
+    - name: Test with pytest
+      run: |
+        pytest --cov=jointly_hic --cov-report=html --cov-report=term-missing --cov-fail-under=80 --color=yes --verbose tests
