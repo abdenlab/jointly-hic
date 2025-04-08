@@ -7,7 +7,7 @@
 ![logo](./logo.png)
 
 Welcome to `jointly-hic`, a Python tool for jointly embedding Hi-C 3D chromatin contact matrices into the same vector space.
-Whether you're a researcher, developer, or enthusiast, this toolkit is designed to help you integrate and analyze multi-sample Hi-C datasets efficiently and effectively.
+This toolkit is designed to help you analyze multi-sample Hi-C datasets efficiently and integrate epigenetic data (ATAC-seq, RNA-seq, ChIP-seq) effectively.
 
 ## Table of Contents
 - [Introduction](#introduction)
@@ -26,11 +26,22 @@ Whether you're a researcher, developer, or enthusiast, this toolkit is designed 
 
 ## Introduction
 
-Hi-C data analysis is a powerful assay to probe chromatin organization and 3D genome structure.
-`jointly-hic` facilitates the integration of multiple Hi-C datasets by jointly embedding them into the same vector space using Principal Component Analysis (PCA), Non-Negative Matrix Factorization (NMF), or Singular Value Decomposition (SVD).
-The tool also includes a post-processing and visualization pipeline to help you make sense of the results.
+The three-dimensional organization of the genome plays a critical role in regulating gene expression and establishing cell identity.
+Hi-C and related chromosome conformation capture technologies have enabled genome-wide profiling of chromatin contacts, revealing compartmental domains and long-range interactions that orchestrate regulatory programs across development and disease.
+However, as the scale and diversity of Hi-C datasets grow—from tissue atlases to time courses and in vitro differentiation models—there remains a lack of computational tools that can integrate dozens to hundreds of Hi-C experiments into a unified analytical space while preserving biological signal and enabling comparative analyses.
+
+Jointly-HiC is a scalable, Python-based toolkit for the joint analysis of Hi-C data across many biosamples.
+It enables efficient pre-processing, fixed-memory joint decomposition using incremental principal component analysis (PCA), singular value decomposition (SVD), or non-negative matrix factorization (NMF), and downstream clustering and visualization.
+Designed with scalability and interpretability in mind, jointly-hic extracts low-dimensional embeddings that can be used to identify shared and sample-specific chromatin interaction profiles across conditions, cell types, and developmental stages.
+By operating in a mini-batched fashion, it avoids the memory constraints of traditional matrix factorization techniques, making it suitable for large-scale studies such as tissue atlases or differentiation trajectories.
+
+In addition to providing core Hi-C analysis workflows, jointly-hic integrates seamlessly with other epigenomic data through the optional JointDb module, a compressed HDF5 database format supporting ChIP-seq, RNA-seq, and ATAC-seq signal tracks at the same resolution.
+This unified framework enables users to analyze compartmentalization dynamics, correlate chromatin interactions with regulatory activity, and discover structural genome features such as nuclear speckle-associated regions or heterochromatic domains.
+With jointly-hic, researchers can uncover patterns of 3D genome organization at scale, shedding light on the structural underpinnings of gene regulation and chromatin state transitions across biological contexts.
 
 ## Installation
+
+`Jointly-hic` can be installed via `pip` or a pre-built docker image is available on `GHRC`. It can also be installed from source.
 
 ### Install from PyPI
 
@@ -66,12 +77,17 @@ jointly -h
 
 ### Input Data Preparation
 
-1. Prepare your Hi-C data as `.mcool` files.
+1. Prepare your Hi-C data as `.mcool` files, binned and balanced at your planned analysis resolution. (We recommend using: [Distiller for alignment](https://github.com/open2c/distiller-nf), [cooler for pre-processing](https://github.com/open2c/cooler), [hictk for file conversion](https://github.com/paulsengroup/hictk))
 2. Balance your data using `cooler balance`.
-3. (Optional) Create region exclusion lists in BED format.
-4. (Optional) Create metadata CSV or YAML files for experiment metadata and signal tracks.
+3. (Optional) Create metadata CSV or YAML files with ENCODE accessions of experiment metadata and signal tracks (Examine the example notebooks for more information).
 
 ### Embedding
+
+The primary compute module of `jointly-hic` is through `embed`.
+This will take a list of input `mcool` files and create a joint decomposition using the provided method, resolution, genome and number of components.
+`jointly-embed` will run the post-processing and trajectory modules with default parameters, which is good for many use cases.
+The output files are vertically stacked tables on bins, embeddings, clustering and UMAP visualizations for all samples, stacked on top of each other.
+Some useful plots, lots, and information will be printed and saved.
 
 ```bash
 jointly embed \
@@ -79,11 +95,12 @@ jointly embed \
   --resolution 50000 \
   --assembly hg38 \
   --method PCA \
-  --components 32 \
-  --output jointly_embedding
+  --components 32
 ```
 
 ### Post-processing
+
+Post-processing is usually performed as part of the `embed` pipeline, but can also be run separately if necessary.
 
 ```bash
 jointly post-process \
@@ -92,7 +109,9 @@ jointly post-process \
   --kmeans-clusters 5 10 15
 ```
 
-### Trajectory Inference
+### Trajectory Analysis
+
+Trajectory analysis is usually performed as part of the `embed` pipeline, but can also be run separately if necessary.
 
 ```bash
 jointly trajectory \
@@ -100,24 +119,34 @@ jointly trajectory \
   --kmeans-clusters 5 10 15
 ```
 
-### Metadata Integration
+### JointDb Database
+
+Part of `jointly-hic` is the `JointDb` database, a powerful way to integrate embeddings from `jointly embed` with ChIP-seq, ATAC-seq, RNA-seq or other epigenetic signal tracks.
+This requires extensive metadata, and we recommend examining the example notebooks and hdf5db source code for more information.
+Creation of a `JointDb` database requires 1) Experiment Metadata in YAML format and 2) (Optional) ENCODE track metadata in YAML format.
+U
+se `embedding2yaml` to extract experiment metadata from the post processed embeddings.
 
 ```bash
 jointly embedding2yaml \
   --parquet-file jointly_embeddings_updated.pq \
-  --accession-column sample_id \
-  --metadata-columns condition stage \
-  --yaml-file metadata/experiments.yaml
-
-jointly tracks2yaml metadata/track_meta.csv metadata/tracks.yaml
+  --accession-column hic_accession \
+  --metadata-columns condition stage \  # Assuming these have been added to jointly_embeddings_updated.pq
+  --yaml-file experiments.yaml
 ```
 
-### Joint HDF5 Database
+Then use `tracks2yaml` to convert a CSV table of ENCODE metadata to YAML format.
+
+```bash
+jointly tracks2yaml track_meta.csv tracks.yaml
+```
+
+Finally, create the `JointDb`.
 
 ```bash
 jointly hdf5db \
-  --experiments metadata/experiments.yaml \
-  --tracks metadata/tracks.yaml \
+  --experiments experiments.yaml \
+  --tracks tracks.yaml \
   --embeddings jointly_embedding_embeddings.pq \
   --accession sample_id \
   --output jointly_output.h5
@@ -133,7 +162,7 @@ The output of the `jointly-hic` tool includes a set of files that contain the re
 - `*_log.txt`: Execution log.
 - `*_post_processed.pq` / `*_post_processed.csv.gz`: Rescaled UMAP and clustering results.
 - `*_trajectories.pq` / `*_trajectories.csv.gz`: Trajectory analysis results.
-- `*_output.h5`: HDF5 database of all embeddings, metadata, and track info (if using `hdf5db`).
+- `*jointly_output.h5`: HDF5 database of all embeddings, metadata, and track info (if using `hdf5db`).
 
 ### Plots
 - Component score plots: `*_scores.png`, `*_scores_clustered.png`, `*_scores_filenames.png`
@@ -142,7 +171,8 @@ The output of the `jointly-hic` tool includes a set of files that contain the re
 
 ## Contributing
 
-We welcome contributions to this project! If you have suggestions, bug reports, or feature requests, please open an issue or submit a pull request.
+We welcome contributions to this project!
+If you have suggestions, bug reports, or feature requests, please open an issue or submit a pull request.
 
 ### Setup (Development)
 
