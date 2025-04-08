@@ -55,16 +55,6 @@ fix = "ruff check --fix --exit-non-zero-on-fix jointly_hic"
 lint = "ruff check --exit-non-zero-on-fix jointly_hic"
 test = "pytest --cov=jointly_hic --cov-report=html --cov-report=term-missing --cov-fail-under=90 --color=yes --verbose tests"
 
-[tool.hatch.envs.test]
-features = ["dev", "notebook"]
-
-[[tool.hatch.envs.test.matrix]]
-python = ["3.10", "3.11", "3.12"]
-
-[tool.hatch.envs.lint]
-features = ["dev"]
-detached = true
-
 [tool.ruff]
 exclude = [
     "__init__.py",
