@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "jointly-hic"
-description = "Out-of-core jointly decompose Hi-C contact matrices"
+description = "Genomics research toolkit for jointly embedding Hi-C 3D chromatin contact matrices into the same vector space"
 authors = [
     {name = "Thomas Reimonn", email = "thomas.reimonn@umassmed.edu"},
     {name = "Nezar Abdennur", email = "nezar.abdennur@umassmed.edu"},
