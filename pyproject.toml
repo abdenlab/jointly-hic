@@ -14,7 +14,7 @@ license = {text = "GPL-3.0"}
 requires-python = ">=3.9"
 dynamic = ["version"]
 dependencies = [
-    "bioframe>=0.7.2",
+    "bioframe",
     "cooler>=0.10.3",
     "cooltools>=0.7.1",
     "cython>3.0.5",
