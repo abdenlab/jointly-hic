@@ -120,7 +120,7 @@ If you have any suggestions or questions, please feel free to open an issue or s
 Whether it's fixing bugs, adding new features, or improving documentation, your contributions are highly valued.
 
 ## License
-This project is licensed under the BSD License. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the GNU GPL (version 3). See the [LICENSE](LICENSE) file for details.
 
 ---
 
