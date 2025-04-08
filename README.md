@@ -4,10 +4,11 @@
 [![Docker Image](https://img.shields.io/badge/ghcr.io-abdenlab%2Fjointly--hic-blue)](https://github.com/abdenlab/jointly-hic/pkgs/container/jointly-hic)
 [![CI](https://github.com/abdenlab/jointly-hic/actions/workflows/python-pytest.yaml/badge.svg)](https://github.com/abdenlab/jointly-hic/actions)
 
-![graphics](./jointly-graphical-abstract.png)
 
 Welcome to `jointly-hic`, a Python tool for jointly embedding Hi-C 3D chromatin contact matrices into the same vector space.
 This toolkit is designed to help you analyze multi-sample Hi-C datasets efficiently and integrate epigenetic data (ATAC-seq, RNA-seq, ChIP-seq) effectively.
+
+![graphics](./jointly-graphical-abstract.png)
 
 ## Table of Contents
 - [Introduction](#introduction)
