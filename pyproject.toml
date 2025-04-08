@@ -1,0 +1,93 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "jointly-hic"
+description = "Out-of-core jointly decompose Hi-C contact matrices"
+authors = [
+    {name = "Thomas Reimonn", email = "thomas.reimonn@umassmed.edu"},
+]
+readme = "README.md"
+license = {text = "BSD-3-Clause"}
+requires-python = ">=3.9"
+dynamic = ["version"]
+dependencies = [
+    "bioframe>=0.5.0",
+    "cooler>=0.9.3",
+    "cooltools>=0.6",
+    "cython>3.0.5",
+    "datashader",
+    "leidenalg>=0.10.1",
+    "numpy>=1.24",
+    "pandas",
+    "pyarrow>=14",
+    "pydantic>=2.4.2",
+    "scikit-learn>=1.3.2",
+    "umap-learn[plot]>=0.5.4",
+    "pybbi>=0.3.6"
+]
+
+[project.optional-dependencies]
+dev = [
+    "pre-commit>=3.5.0",
+    "isort>=5.12.0",
+    "pytest>=7.4.3",
+    "pytest-mock>=3.12.0",
+    "pytest-cov>=4.1.0",
+    "ruff>=0.2.0"
+]
+notebook = [
+    "jupyter>=1.0.0",
+    "jupyterlab>=4.0.10",
+    "plotly>=5.18.0",
+]
+
+[project.scripts]
+jointly = "jointly_hic.__main__:main"
+
+[tool.hatch.version]
+path = "jointly_hic/__init__.py"
+
+[tool.hatch.envs.default.scripts]
+fix = "ruff check --fix --exit-non-zero-on-fix jointly_hic"
+lint = "ruff check --exit-non-zero-on-fix jointly_hic"
+test = "pytest --cov=jointly_hic --cov-report=html --cov-report=term-missing --cov-fail-under=90 --color=yes --verbose tests"
+
+[tool.hatch.envs.test]
+features = ["dev", "notebook"]
+
+[[tool.hatch.envs.test.matrix]]
+python = ["3.10", "3.11", "3.12"]
+
+[tool.hatch.envs.lint]
+features = ["dev"]
+detached = true
+
+[tool.ruff]
+exclude = [
+    "__init__.py",
+]
+lint.extend-select = [
+    "E",  # style errors
+    "D",  # pydocstyle
+    "F",  # pyflakes
+    "S",  # mypy
+    "T",  # tests
+    "UP", # pyupgrade
+    "I",  # isort
+    "RUF", # ruff-specific rules
+    "UP", # pyupgrade
+    "W",  # style  warnings
+]
+line-length = 120
+indent-width = 4
+target-version = "py311"
+lint.ignore = ["S101", "D203", "D213"]
+
+
+[tool.isort]
+profile = "black"
+line_length = 120
+skip_gitignore = true
+known_first_party = "joint_pca_hic"
