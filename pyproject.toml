@@ -7,9 +7,10 @@ name = "jointly-hic"
 description = "Out-of-core jointly decompose Hi-C contact matrices"
 authors = [
     {name = "Thomas Reimonn", email = "thomas.reimonn@umassmed.edu"},
+    {name = "Nezar Abdennur", email = "nezar.abdennur@umassmed.edu"},
 ]
 readme = "README.md"
-license = {text = "BSD-3-Clause"}
+license = {text = "GPL-3.0"}
 requires-python = ">=3.9"
 dynamic = ["version"]
 dependencies = [
@@ -82,7 +83,6 @@ lint.extend-select = [
 ]
 line-length = 120
 indent-width = 4
-target-version = "py311"
 lint.ignore = ["S101", "D203", "D213"]
 
 
@@ -90,4 +90,4 @@ lint.ignore = ["S101", "D203", "D213"]
 profile = "black"
 line_length = 120
 skip_gitignore = true
-known_first_party = "joint_pca_hic"
+known_first_party = "jointly_hic"

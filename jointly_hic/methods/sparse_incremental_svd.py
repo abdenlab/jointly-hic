@@ -165,16 +165,10 @@ class SparseIncrementalSVD(_BasePCA):
                 self.n_components_ = self.components_.shape[0]
         elif not self.n_components <= n_features:
             raise ValueError(
-                "n_components=%r invalid for n_features=%d, need "
-                "more rows than columns for IncrementalPCA "
-                "processing"
+                "n_components=%r invalid for n_features=%d, need more rows than columns for IncrementalPCA processing"
             )
         elif not self.n_components <= n_samples:
-            raise ValueError(
-                "n_components=%r must be less or equal to "
-                "the batch number of samples "
-                "%d."
-            )
+            raise ValueError("n_components=%r must be less or equal to the batch number of samples %d.")
         else:
             self.n_components_ = self.n_components
 
