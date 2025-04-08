@@ -1,10 +1,8 @@
 name: Auto Release on Merge to Main
 
 on:
-  workflow_run:
-    workflows: ["Run Pytest"]
-    types:
-      - completed
+  push:
+    branches: [ "main" ]
 
 permissions:
   contents: write
