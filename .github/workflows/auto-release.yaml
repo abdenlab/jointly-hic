@@ -1,0 +1,49 @@
+name: Auto Release on Merge to Main
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+  id-token: write
+
+jobs:
+  release:
+    name: Bump version & create release
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Hatch
+        run: pip install hatch
+
+      - name: Bump patch version
+        run: hatch version patch
+
+      - name: Commit version bump
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add jointly_hic/__init__.py
+          git commit -m "chore: bump version"
+          git push
+
+      - name: Extract version
+        id: get-version
+        run: |
+          echo "version=$(hatch version)" >> "$GITHUB_OUTPUT"
+
+      - name: Create GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ steps.get-version.outputs.version }}
+          name: Release v${{ steps.get-version.outputs.version }}
+          generate_release_notes: true
