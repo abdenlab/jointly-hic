@@ -1,8 +1,10 @@
 name: Auto Release on Merge to Main
 
 on:
-  push:
-    branches: [main]
+  workflow_run:
+    workflows: ["Run Pytest"]
+    types:
+      - completed
 
 permissions:
   contents: write
@@ -10,6 +12,7 @@ permissions:
 
 jobs:
   release:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     name: Bump version & create release
     runs-on: ubuntu-latest
 
@@ -24,17 +27,6 @@ jobs:
 
       - name: Install Hatch
         run: pip install hatch
-
-      - name: Bump patch version
-        run: hatch version patch
-
-      - name: Commit version bump
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add jointly_hic/__init__.py
-          git commit -m "chore: bump version"
-          git push
 
       - name: Extract version
         id: get-version

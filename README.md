@@ -1,129 +1,212 @@
-# Jointly-HIC
+# Jointly-HiC
 
-![logo](./logo.png)
+[![PyPI](https://img.shields.io/pypi/v/jointly-hic)](https://pypi.org/project/jointly-hic/)
+[![Docker Image](https://img.shields.io/badge/ghcr.io-abdenlab%2Fjointly--hic-blue)](https://github.com/abdenlab/jointly-hic/pkgs/container/jointly-hic)
+[![CI](https://github.com/abdenlab/jointly-hic/actions/workflows/python-pytest.yaml/badge.svg)](https://github.com/abdenlab/jointly-hic/actions)
+
 
 Welcome to `jointly-hic`, a Python tool for jointly embedding Hi-C 3D chromatin contact matrices into the same vector space.
-Whether you're a researcher, developer, or enthusiast, this toolkit is designed to help you integrate and analyze multi-sample Hi-C datasets efficiently and effectively.
+This toolkit is designed to help you analyze multi-sample Hi-C datasets efficiently and integrate epigenetic data (ATAC-seq, RNA-seq, ChIP-seq) effectively.
+
+![graphics](./jointly-graphical-abstract.png)
 
 ## Table of Contents
 - [Introduction](#introduction)
 - [Installation](#installation)
 - [Usage](#usage)
-- [Input Data](#input-data)
+  - [Input Data Preparation](#input-data-preparation)
+  - [Embedding](#embedding)
+  - [Post-processing](#post-processing)
+  - [Trajectory Inference](#trajectory-inference)
+  - [Metadata Integration](#metadata-integration)
+  - [Joint HDF5 Database](#joint-hdf5-database)
 - [Output](#output)
 - [Contributing](#contributing)
+- [CI/CD and Release Process](#cicd-and-release-process)
 - [License](#license)
 
 ## Introduction
-Hi-C data analysis is a powerful assay to probe chromatin organization and 3D genome structure.
-`jointly-hic` facilitates the integration of multiple Hi-C datasets by jointly embedding them into the same vector space using Principal Component Analysis (PCA), Non-Negative Matrix Factorization (NMF), or Singular Value Decomposition (SVD).
-The tool also includes a post-processing and visualization pipeline to help you make sense of the results.
+
+The three-dimensional organization of the genome plays a critical role in regulating gene expression and establishing cell identity.
+Hi-C and related chromosome conformation capture technologies have enabled genome-wide profiling of chromatin contacts, revealing compartmental domains and long-range interactions that orchestrate regulatory programs across development and disease.
+However, as the scale and diversity of Hi-C datasets grow—from tissue atlases to time courses and in vitro differentiation models—there remains a lack of computational tools that can integrate dozens to hundreds of Hi-C experiments into a unified analytical space while preserving biological signal and enabling comparative analyses.
+
+Jointly-HiC is a scalable, Python-based toolkit for the joint analysis of Hi-C data across many biosamples.
+It enables efficient pre-processing, fixed-memory joint decomposition using incremental principal component analysis (PCA), singular value decomposition (SVD), or non-negative matrix factorization (NMF), and downstream clustering and visualization.
+Designed with scalability and interpretability in mind, jointly-hic extracts low-dimensional embeddings that can be used to identify shared and sample-specific chromatin interaction profiles across conditions, cell types, and developmental stages.
+By operating in a mini-batched fashion, it avoids the memory constraints of traditional matrix factorization techniques, making it suitable for large-scale studies such as tissue atlases or differentiation trajectories.
+
+In addition to providing core Hi-C analysis workflows, jointly-hic integrates seamlessly with other epigenomic data through the optional JointDb module, a compressed HDF5 database format supporting ChIP-seq, RNA-seq, and ATAC-seq signal tracks at the same resolution.
+This unified framework enables users to analyze compartmentalization dynamics, correlate chromatin interactions with regulatory activity, and discover structural genome features such as nuclear speckle-associated regions or heterochromatic domains.
+With jointly-hic, researchers can uncover patterns of 3D genome organization at scale, shedding light on the structural underpinnings of gene regulation and chromatin state transitions across biological contexts.
 
 ## Installation
 
-### Install with pip
-To install `jointly-hic` using `pip`, follow these steps:
+`Jointly-hic` can be installed via `pip` or a pre-built docker image is available on `GHRC`. It can also be installed from source.
+
+### Install from PyPI
 
 ```bash
-# Clone the source code
-git clone https://github.com/abdenlab/jointly-hic.git
-
-# Create a virtual environment
-python3 -m venv venv
-
-# Activate the virtual environment
-source venv/bin/activate
-
-# Install the package
-pip install .
-
-# Install development and notebook dependencies if you develop with this project or run the notebooks
-pip install -e '.[dev, notebook]'
+pip install jointly-hic
 ```
 
 ### Run with Docker
-Everything required to run this tool is included in the Docker image.
 
 ```bash
-# Pull the Docker image
-docker pull treimonn/jointly-hic:latest
+docker pull ghcr.io/abdenlab/jointly-hic
 ```
 
-## Input Data
-To use `jointly-hic`, follow these steps:
+### Install from source (for development)
 
-1. Prepare your Hi-C data in the form of `.mcool` files. If your data is in `.hic` format, you can use the `hictk` [Hi-C toolkit](https://hictk.readthedocs.io/en/latest/) to convert it to `.mcool` format.
-2. Balance the Hi-C data using `cooler balance` from [cooler](https://cooler.readthedocs.io/en/latest/cli.html#cooler-balance).
-3. Run `jointly-hic` with the appropriate parameters (see below).
-
-Each `.mcool` file should contain Hi-C contact matrices for a specific sample or condition.
+```bash
+git clone https://github.com/abdenlab/jointly-hic.git
+cd jointly-hic
+python3 -m venv venv
+source venv/bin/activate
+pip install -e '.[dev,notebook]'
+```
 
 ## Usage
-The usage options for the `jointly-hic` tool are specified in the command-line interface (CLI) as follows:
 
+You can run `jointly` from the command line to embed, post-process, analyze trajectories, or create metadata and databases from Hi-C matrices.
+
+To get help on available subcommands:
+
+```bash
+jointly -h
 ```
-usage: jointly embed [-h] --mcools MCOOLS [MCOOLS ...] --resolution RESOLUTION --assembly {hg38,mm10,hg19,mm9}
-                     [--output OUTPUT] [--components COMPONENTS] [--chrom-limit CHROM_LIMIT] [--method {PCA,NMF,SVD}]
-                     [--exclusion-list EXCLUSION_LIST] [--percentile-top PERCENTILE_TOP]
-                     [--percentile-bottom PERCENTILE_BOTTOM] [--batch-size BATCH_SIZE]
 
-options:
-  -h, --help            show this help message and exit
-  --mcools MCOOLS [MCOOLS ...]
-                        Path to mcool file(s) containing Hi-C contact matrices
-  --resolution RESOLUTION
-                        Bin size to use for contact frequency matrix
-  --assembly {hg38,mm10,hg19,mm9}
-                        Genome assembly name used for alignment (e.g. hg38, mm10)
-  --output OUTPUT       Prefix for output files (Default: output_<datetime>)
-  --components COMPONENTS
-                        Number of components to use for PCA (Default: 32)
-  --chrom-limit CHROM_LIMIT
-                        Limit number of chromosomes to load (Example: '23' to limit to human chr1-chrX and exclude
-                        chrY and chrM).
-  --method {PCA,NMF,SVD}
-                        Method to use for decomposition, either PCA, NMF or SVD (Default: PCA)
-  --exclusion-list EXCLUSION_LIST
-                        File containing regions to exclude from analysis
-  --percentile-top PERCENTILE_TOP
-                        Top percentile for filtering (Default: 99.5)
-  --percentile-bottom PERCENTILE_BOTTOM
-                        Bottom percentile for filtering (Default: 1)
-  --batch-size BATCH_SIZE
-                        Batch size for mini-batches (Default: 10000)
+### Input Data Preparation
+
+1. Prepare your Hi-C data as `.mcool` files, binned and balanced at your planned analysis resolution. (We recommend using: [Distiller for alignment](https://github.com/open2c/distiller-nf), [cooler for pre-processing](https://github.com/open2c/cooler), [hictk for file conversion](https://github.com/paulsengroup/hictk))
+2. Balance your data using `cooler balance`.
+3. (Optional) Create metadata CSV or YAML files with ENCODE accessions of experiment metadata and signal tracks (Examine the example notebooks for more information).
+
+### Embedding
+
+The primary compute module of `jointly-hic` is through `embed`.
+This will take a list of input `mcool` files and create a joint decomposition using the provided method, resolution, genome and number of components.
+`jointly-embed` will run the post-processing and trajectory modules with default parameters, which is good for many use cases.
+The output files are vertically stacked tables on bins, embeddings, clustering and UMAP visualizations for all samples, stacked on top of each other.
+Some useful plots, lots, and information will be printed and saved.
+
+```bash
+jointly embed \
+  --mcools sample1.mcool sample2.mcool \
+  --resolution 50000 \
+  --assembly hg38 \
+  --method PCA \
+  --components 32
+```
+
+### Post-processing
+
+Post-processing is usually performed as part of the `embed` pipeline, but can also be run separately if necessary.
+
+```bash
+jointly post-process \
+  --parquet-file jointly_embeddings.pq \
+  --umap-neighbours 30 100 500 \
+  --kmeans-clusters 5 10 15
+```
+
+### Trajectory Analysis
+
+Trajectory analysis is usually performed as part of the `embed` pipeline, but can also be run separately if necessary.
+
+```bash
+jointly trajectory \
+  --parquet-file jointly_embeddings.pq
+  --kmeans-clusters 5 10 15
+```
+
+### JointDb Database
+
+Part of `jointly-hic` is the `JointDb` database, a powerful way to integrate embeddings from `jointly embed` with ChIP-seq, ATAC-seq, RNA-seq or other epigenetic signal tracks.
+This requires extensive metadata, and we recommend examining the example notebooks and hdf5db source code for more information.
+Creation of a `JointDb` database requires 1) Experiment Metadata in YAML format and 2) (Optional) ENCODE track metadata in YAML format.
+U
+se `embedding2yaml` to extract experiment metadata from the post processed embeddings.
+
+```bash
+jointly embedding2yaml \
+  --parquet-file jointly_embeddings_updated.pq \
+  --accession-column hic_accession \
+  --metadata-columns condition stage \  # Assuming these have been added to jointly_embeddings_updated.pq
+  --yaml-file experiments.yaml
+```
+
+Then use `tracks2yaml` to convert a CSV table of ENCODE metadata to YAML format.
+
+```bash
+jointly tracks2yaml track_meta.csv tracks.yaml
+```
+
+Finally, create the `JointDb`.
+
+```bash
+jointly hdf5db \
+  --experiments experiments.yaml \
+  --tracks tracks.yaml \
+  --embeddings jointly_embedding_embeddings.pq \
+  --accession sample_id \
+  --output jointly_output.h5
 ```
 
 ## Output
+
 The output of the `jointly-hic` tool includes a set of files that contain the results of the analysis. The files are saved with the prefix specified by the `--output` option.
 
 ### Data Files
-- `prefix_embeddings.pq`: Contains the embeddings of the Hi-C data saved as a parquet file.
-- `prefix_embeddings.csv.gz`: Contains the embeddings of the Hi-C data saved as a CSV file.
-- `prefix_model.pkl.gz`: Contains the trained PCA or NMF model used for the decomposition.
-- `prefix_log.txt`: Contains the log of the analysis, including the parameters used and the time taken for each step.
-- `prefix_post_processed.csv.gz`: Contains post-processing results, including UMAP embedding and clustering labels, saved as a CSV.
-- `prefix_post_processed.pq`: Contains post-processing results, including UMAP embedding and clustering labels, saved as a parquet file.
-- `prefix_trajectories.csv.gz`: Contains the trajectory analysis results saved as a CSV file.
-- `prefix_trajectories.pq`: Contains the trajectory analysis results saved as a parquet file.
+- `*_embeddings.pq` and `*_embeddings.csv.gz`: Raw Hi-C embeddings.
+- `*_model.pkl.gz`: Serialized decomposition model (PCA or NMF).
+- `*_log.txt`: Execution log.
+- `*_post_processed.pq` / `*_post_processed.csv.gz`: Rescaled UMAP and clustering results.
+- `*_trajectories.pq` / `*_trajectories.csv.gz`: Trajectory analysis results.
+- `*jointly_output.h5`: HDF5 database of all embeddings, metadata, and track info (if using `hdf5db`).
 
 ### Plots
-- `prefix_scores.png`: A plot of the PCA or NMF scores for each sample.
-- `prefix_scores_clustered.png`: A plot of the PCA or NMF scores for each sample, with points colored by cluster.
-- `prefix_scores_filenames.png`: A plot of the PCA or NMF scores for each sample, with points colored by filename.
-- `prefix_umap-n##_clustered.png`: A plot of the UMAP embedding for each sample, with points colored by cluster.
-- `prefix_umap-n##_filenames.png`: A plot of the UMAP embedding for each sample, with points colored by filename.
-- `prefix_trajectory_umap-n##_kmeans.png`: A plot of the trajectory analysis UMAP embedding for each sample, with points colored by k-means cluster.
+- Component score plots: `*_scores.png`, `*_scores_clustered.png`, `*_scores_filenames.png`
+- UMAP plots: `*_umap-n##_clustered.png`, `*_umap-n##_filenames.png`
+- Trajectory UMAP: `*_trajectory_umap-n##_kmeans.png`
 
 ## Contributing
+
 We welcome contributions to this project!
-If you have any suggestions or questions, please feel free to open an issue or submit a pull request.
-Whether it's fixing bugs, adding new features, or improving documentation, your contributions are highly valued.
+If you have suggestions, bug reports, or feature requests, please open an issue or submit a pull request.
+
+### Setup (Development)
+
+```bash
+git clone https://github.com/abdenlab/jointly-hic.git
+cd jointly-hic
+pip install -e '.[dev,notebook]'
+pre-commit install
+```
+
+### Running Tests and Linting
+
+```bash
+ruff check jointly_hic
+pytest --cov=jointly_hic --cov-report=term-missing tests
+```
+
+## CI/CD and Release Process
+
+We use GitHub Actions for continuous integration and deployment.
+
+### Workflow Summary
+
+1. **CI Tests**: On every push or pull request to `main`, we run tests and linting (`python-pytest.yaml`).
+2. **Versioning + Release**: If tests pass, the version is pulled from `jointly_hic/__init__.py`, and a GitHub release is created (`auto-release.yaml`).
+3. **Package Publishing**:
+   - The `pypi-publish.yaml` workflow builds and publishes the package to [PyPI](https://pypi.org/project/jointly-hic).
+   - The `docker-publish.yaml` workflow builds a Docker image and pushes it to [GHCR](https://github.com/orgs/abdenlab/packages/container/package/jointly-hic).
 
 ## License
+
 This project is licensed under the GNU GPL (version 3). See the [LICENSE](LICENSE) file for details.
 
 ---
 
-Thank you for your interest in `jointly-hic`!
-We hope this tool aids your research and helps you uncover new insights into chromatin organization and 3D genome structure.
-Happy analyzing!
+Thank you for your interest in `jointly-hic`. We hope this tool aids your research and helps you uncover new insights into chromatin organization and 3D genome structure.
