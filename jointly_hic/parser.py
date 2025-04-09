@@ -9,7 +9,7 @@ from jointly_hic.hdf5db.hdf5db import configure_hdf5db_parser
 from jointly_hic.hdf5db.trackcsv2yaml import configure_trackcsv2yaml_parser
 
 
-class JointPCACommandLineInterface:
+class JointlyCommandLineInterface:
     """Main CLI for jointly_hic."""
 
     def __init__(self):
