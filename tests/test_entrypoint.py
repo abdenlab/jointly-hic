@@ -57,8 +57,8 @@ def test_main_success():
         main()
 
         # Check that logging was called with the expected messages
-        mock_logger.info.assert_any_call("Starting joint PCA")
-        mock_logger.info.assert_any_call("Finished joint PCA")
+        mock_logger.info.assert_any_call("Starting jointly-hic")
+        mock_logger.info.assert_any_call("Finished jointly-hic")
 
 
 def test_main_exception():
