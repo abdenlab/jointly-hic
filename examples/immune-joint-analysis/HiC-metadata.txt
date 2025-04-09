@@ -1,0 +1,11 @@
+accession	assay_term_name	assay_title	biosample	biosample_summary	hic_accession
+ENCSR351NAI	HiC	intact Hi-C	activated CD8-positive, alpha-beta T cell	Homo sapiens activated CD8-positive, alpha-beta T cell male adult (21 years) treated with anti-CD3 and anti-CD28 coated beads for 36 hours	ENCFF493SFI
+ENCSR923PPH	HiC	intact Hi-C	activated CD4-positive, alpha-beta T cell	Homo sapiens activated CD4-positive, alpha-beta T cell male adult (35 years) treated with 10 ng/mL Interleukin-2 for 14 days, anti-CD3 and anti-CD28 coated beads for 24 hours, anti-CD3 and anti-CD28 coated beads for 14 days	ENCFF355VJW
+ENCSR321BHC	HiC	intact Hi-C	CD8-positive, alpha-beta T cell	Homo sapiens CD8-positive, alpha-beta T cell male adult (21 years)	ENCFF009ONH
+ENCSR215PTV	HiC	intact Hi-C	naive thymus-derived CD4-positive, alpha-beta T cell	Homo sapiens naive thymus-derived CD4-positive, alpha-beta T cell male adult (35 years)	ENCFF520GFL
+ENCSR335JYP	HiC	intact Hi-C	CD4-positive, alpha-beta T cell	Homo sapiens CD4-positive, alpha-beta T cell male adult (20 years)	ENCFF958DWQ
+ENCSR379TIE	HiC	intact Hi-C	CD4-positive, alpha-beta memory T cell	Homo sapiens CD4-positive, alpha-beta memory T cell male adult (43 years)	ENCFF442IGJ
+ENCSR421CGL	HiC	intact Hi-C	activated CD4-positive, alpha-beta T cell	Homo sapiens activated CD4-positive, alpha-beta T cell male adult (20 years) treated with anti-CD3 and anti-CD28 coated beads for 36 hours	ENCFF962EDB
+ENCSR195ETV	HiC	intact Hi-C	activated naive CD4-positive, alpha-beta T cell	Homo sapiens activated naive CD4-positive, alpha-beta T cell male adult (43 years) treated with anti-CD3 and anti-CD28 coated beads for 36 hours	ENCFF571GTF
+ENCSR458VJJ	HiC	intact Hi-C	naive thymus-derived CD4-positive, alpha-beta T cell	Homo sapiens naive thymus-derived CD4-positive, alpha-beta T cell male adult (43 years)	ENCFF044TCQ
+ENCSR291EBI	HiC	intact Hi-C	activated CD4-positive, alpha-beta memory T cell	Homo sapiens activated CD4-positive, alpha-beta memory T cell male adult (43 years) treated with anti-CD3 and anti-CD28 coated beads for 36 hours	ENCFF980NXK
