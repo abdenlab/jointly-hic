@@ -64,7 +64,7 @@ def test_main_success():
 def test_main_exception():
     """Test the main function when an exception is raised."""
     with (
-        patch("jointly_hic.entrypoint.JointPCACommandLineInterface") as mock_cli,
+        patch("jointly_hic.entrypoint.JointlyCommandLineInterface") as mock_cli,
         patch("jointly_hic.entrypoint.setup_logging") as mock_setup_logging,
     ):
         # Mock the parser to simulate command line arguments being parsed successfully
