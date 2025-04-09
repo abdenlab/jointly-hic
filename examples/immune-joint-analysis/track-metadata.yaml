@@ -1,0 +1,272 @@
+- accession: ENCFF446TSX
+  assay: H3K36me3
+  biosample: naive thymus-derived CD4-positive, alpha-beta T cell
+  experiment: ENCSR198YHG
+- accession: ENCFF853MDG
+  assay: H3K27me3
+  biosample: naive thymus-derived CD4-positive, alpha-beta T cell
+  experiment: ENCSR637IOH
+- accession: ENCFF602PAL
+  assay: H3K9me3
+  biosample: naive thymus-derived CD4-positive, alpha-beta T cell
+  experiment: ENCSR276ZSL
+- accession: ENCFF078XQO
+  assay: H3K4me3
+  biosample: naive thymus-derived CD4-positive, alpha-beta T cell
+  experiment: ENCSR161XBV
+- accession: ENCFF727UVG
+  assay: H3K9me3
+  biosample: naive thymus-derived CD4-positive, alpha-beta T cell
+  experiment: ENCSR229QYR
+- accession: ENCFF153OTG
+  assay: H3K36me3
+  biosample: naive thymus-derived CD4-positive, alpha-beta T cell
+  experiment: ENCSR716CWA
+- accession: ENCFF983MZP
+  assay: H3K27me3
+  biosample: naive thymus-derived CD4-positive, alpha-beta T cell
+  experiment: ENCSR485URZ
+- accession: ENCFF371PQB
+  assay: H3K4me1
+  biosample: naive thymus-derived CD4-positive, alpha-beta T cell
+  experiment: ENCSR351SZH
+- accession: ENCFF773LSR
+  assay: H3K4me1
+  biosample: naive thymus-derived CD4-positive, alpha-beta T cell
+  experiment: ENCSR657SQM
+- accession: ENCFF599VAD
+  assay: H3K27ac
+  biosample: naive thymus-derived CD4-positive, alpha-beta T cell
+  experiment: ENCSR120WKZ
+- accession: ENCFF902LSI
+  assay: H3K27ac
+  biosample: naive thymus-derived CD4-positive, alpha-beta T cell
+  experiment: ENCSR674VPA
+- accession: ENCFF134OLO
+  assay: H3K4me3
+  biosample: naive thymus-derived CD4-positive, alpha-beta T cell
+  experiment: ENCSR098ALO
+- accession: ENCFF921FOC
+  assay: H3K27me3
+  biosample: naive thymus-derived CD4-positive, alpha-beta T cell
+  experiment: ENCSR218HDF
+- accession: ENCFF792DLB
+  assay: H3K36me3
+  biosample: naive thymus-derived CD4-positive, alpha-beta T cell
+  experiment: ENCSR605SXJ
+- accession: ENCFF218XJQ
+  assay: H3K4me1
+  biosample: naive thymus-derived CD4-positive, alpha-beta T cell
+  experiment: ENCSR430ULY
+- accession: ENCFF414FEJ
+  assay: H3K9me3
+  biosample: naive thymus-derived CD4-positive, alpha-beta T cell
+  experiment: ENCSR224LFY
+- accession: ENCFF830YRD
+  assay: H3K4me1
+  biosample: CD4-positive, alpha-beta T cell
+  experiment: ENCSR777RWW
+- accession: ENCFF168UFN
+  assay: H3K27me3
+  biosample: CD4-positive, alpha-beta T cell
+  experiment: ENCSR043SBG
+- accession: ENCFF256WHR
+  assay: H3K27ac
+  biosample: CD4-positive, alpha-beta T cell
+  experiment: ENCSR561KOM
+- accession: ENCFF347CQB
+  assay: H3K36me3
+  biosample: CD4-positive, alpha-beta T cell
+  experiment: ENCSR877ZUK
+- accession: ENCFF034CTK
+  assay: H3K4me1
+  biosample: CD4-positive, alpha-beta T cell
+  experiment: ENCSR971QHH
+- accession: ENCFF884OMU
+  assay: H3K9me3
+  biosample: CD4-positive, alpha-beta T cell
+  experiment: ENCSR787WLV
+- accession: ENCFF295CPY
+  assay: H3K4me3
+  biosample: CD4-positive, alpha-beta T cell
+  experiment: ENCSR714KWW
+- accession: ENCFF296NOR
+  assay: H3K4me3
+  biosample: CD4-positive, alpha-beta T cell
+  experiment: ENCSR263WLD
+- accession: ENCFF435MWB
+  assay: H3K36me3
+  biosample: CD4-positive, alpha-beta T cell
+  experiment: ENCSR828WZG
+- accession: ENCFF853JHP
+  assay: H3K9me3
+  biosample: CD4-positive, alpha-beta T cell
+  experiment: ENCSR453GNY
+- accession: ENCFF591RWC
+  assay: H3K4me3
+  biosample: CD4-positive, alpha-beta T cell
+  experiment: ENCSR852FRR
+- accession: ENCFF088KUT
+  assay: H3K4me1
+  biosample: CD4-positive, alpha-beta T cell
+  experiment: ENCSR466XPN
+- accession: ENCFF087SNY
+  assay: H3K36me3
+  biosample: CD4-positive, alpha-beta T cell
+  experiment: ENCSR774OKQ
+- accession: ENCFF885JYJ
+  assay: H3K27me3
+  biosample: CD4-positive, alpha-beta T cell
+  experiment: ENCSR769SGQ
+- accession: ENCFF760SNB
+  assay: H3K9me3
+  biosample: CD4-positive, alpha-beta T cell
+  experiment: ENCSR692ICP
+- accession: ENCFF193MIZ
+  assay: H3K27me3
+  biosample: CD4-positive, alpha-beta T cell
+  experiment: ENCSR733QOZ
+- accession: ENCFF694IFY
+  assay: H3K27ac
+  biosample: CD4-positive, alpha-beta T cell
+  experiment: ENCSR138DOM
+- accession: ENCFF892JDN
+  assay: H3K27ac
+  biosample: CD4-positive, alpha-beta T cell
+  experiment: ENCSR546SDM
+- accession: ENCFF765HYA
+  assay: H3K27me3
+  biosample: CD4-positive, alpha-beta memory T cell
+  experiment: ENCSR012KUR
+- accession: ENCFF158WCY
+  assay: H3K4me3
+  biosample: CD4-positive, alpha-beta memory T cell
+  experiment: ENCSR223APP
+- accession: ENCFF788JSC
+  assay: H3K36me3
+  biosample: CD4-positive, alpha-beta memory T cell
+  experiment: ENCSR805DRK
+- accession: ENCFF190AJB
+  assay: H3K36me3
+  biosample: CD4-positive, alpha-beta memory T cell
+  experiment: ENCSR580WRV
+- accession: ENCFF537CQL
+  assay: H3K9me3
+  biosample: CD4-positive, alpha-beta memory T cell
+  experiment: ENCSR239SNR
+- accession: ENCFF301EPC
+  assay: H3K9me3
+  biosample: CD4-positive, alpha-beta memory T cell
+  experiment: ENCSR117IQD
+- accession: ENCFF061JOB
+  assay: H3K4me1
+  biosample: CD4-positive, alpha-beta memory T cell
+  experiment: ENCSR887ESB
+- accession: ENCFF175MGD
+  assay: H3K4me3
+  biosample: CD4-positive, alpha-beta memory T cell
+  experiment: ENCSR077FZT
+- accession: ENCFF893HGX
+  assay: H3K4me3
+  biosample: CD4-positive, alpha-beta memory T cell
+  experiment: ENCSR807WEO
+- accession: ENCFF373LYP
+  assay: H3K27ac
+  biosample: CD4-positive, alpha-beta memory T cell
+  experiment: ENCSR314BEX
+- accession: ENCFF402DAY
+  assay: H3K27me3
+  biosample: CD4-positive, alpha-beta memory T cell
+  experiment: ENCSR702RZM
+- accession: ENCFF926KDG
+  assay: H3K9me3
+  biosample: CD4-positive, alpha-beta memory T cell
+  experiment: ENCSR333VFQ
+- accession: ENCFF653TLI
+  assay: H3K27ac
+  biosample: CD4-positive, alpha-beta memory T cell
+  experiment: ENCSR724GUS
+- accession: ENCFF959DIS
+  assay: H3K4me1
+  biosample: CD4-positive, alpha-beta memory T cell
+  experiment: ENCSR660WQO
+- accession: ENCFF975SNY
+  assay: H3K4me3
+  biosample: CD4-positive, alpha-beta memory T cell
+  experiment: ENCSR457FQI
+- accession: ENCFF859UUZ
+  assay: H3K4me1
+  biosample: CD8-positive, alpha-beta T cell
+  experiment: ENCSR851DHU
+- accession: ENCFF020CWJ
+  assay: H3K27me3
+  biosample: CD8-positive, alpha-beta T cell
+  experiment: ENCSR103GGR
+- accession: ENCFF220LVT
+  assay: H3K4me3
+  biosample: CD8-positive, alpha-beta T cell
+  experiment: ENCSR796CSH
+- accession: ENCFF826PFD
+  assay: H3K36me3
+  biosample: CD8-positive, alpha-beta T cell
+  experiment: ENCSR782NOO
+- accession: ENCFF786OUD
+  assay: H3K9me3
+  biosample: CD8-positive, alpha-beta T cell
+  experiment: ENCSR824PXG
+- accession: ENCFF555QTG
+  assay: H3K36me3
+  biosample: CD8-positive, alpha-beta T cell
+  experiment: ENCSR694CDP
+- accession: ENCFF264QTV
+  assay: H3K9ac
+  biosample: CD8-positive, alpha-beta T cell
+  experiment: ENCSR348UWU
+- accession: ENCFF832EOA
+  assay: H3K4me1
+  biosample: CD8-positive, alpha-beta T cell
+  experiment: ENCSR631BPS
+- accession: ENCFF014CKV
+  assay: H3K9me3
+  biosample: CD8-positive, alpha-beta T cell
+  experiment: ENCSR815PSO
+- accession: ENCFF892ETR
+  assay: H3K4me3
+  biosample: CD8-positive, alpha-beta T cell
+  experiment: ENCSR231FDF
+- accession: ENCFF979VKE
+  assay: H3K36me3
+  biosample: CD8-positive, alpha-beta T cell
+  experiment: ENCSR681OSD
+- accession: ENCFF637YHM
+  assay: H3K27me3
+  biosample: CD8-positive, alpha-beta T cell
+  experiment: ENCSR639HVJ
+- accession: ENCFF217MWA
+  assay: H3K4me1
+  biosample: CD8-positive, alpha-beta T cell
+  experiment: ENCSR422LQX
+- accession: ENCFF966FLQ
+  assay: H3K27ac
+  biosample: CD8-positive, alpha-beta T cell
+  experiment: ENCSR007HLH
+- accession: ENCFF115QAJ
+  assay: H3K27me3
+  biosample: CD8-positive, alpha-beta T cell
+  experiment: ENCSR797GOJ
+- accession: ENCFF523KXW
+  assay: H3K4me3
+  biosample: CD8-positive, alpha-beta T cell
+  experiment: ENCSR660KHZ
+- accession: ENCFF495UDL
+  assay: H3K27ac
+  biosample: CD8-positive, alpha-beta T cell
+  experiment: ENCSR835OJV
+- accession: ENCFF690UGP
+  assay: H3K4me3
+  biosample: CD8-positive, alpha-beta T cell
+  experiment: ENCSR166ZZZ
+- accession: ENCFF915RCT
+  assay: H3K9me3
+  biosample: CD8-positive, alpha-beta T cell
+  experiment: ENCSR905SHH

@@ -1,0 +1,41 @@
+- accession: ENCFF009ONH
+  biosample: CD8-positive, alpha-beta T cell
+  biosample_summary: Homo sapiens CD8-positive, alpha-beta T cell male adult (21 years)
+- accession: ENCFF044TCQ
+  biosample: naive thymus-derived CD4-positive, alpha-beta T cell
+  biosample_summary: Homo sapiens naive thymus-derived CD4-positive, alpha-beta T
+    cell male adult (43 years)
+- accession: ENCFF355VJW
+  biosample: activated CD4-positive, alpha-beta T cell
+  biosample_summary: Homo sapiens activated CD4-positive, alpha-beta T cell male adult
+    (35 years) treated with 10 ng/mL Interleukin-2 for 14 days, anti-CD3 and anti-CD28
+    coated beads for 24 hours, anti-CD3 and anti-CD28 coated beads for 14 days
+- accession: ENCFF442IGJ
+  biosample: CD4-positive, alpha-beta memory T cell
+  biosample_summary: Homo sapiens CD4-positive, alpha-beta memory T cell male adult
+    (43 years)
+- accession: ENCFF493SFI
+  biosample: activated CD8-positive, alpha-beta T cell
+  biosample_summary: Homo sapiens activated CD8-positive, alpha-beta T cell male adult
+    (21 years) treated with anti-CD3 and anti-CD28 coated beads for 36 hours
+- accession: ENCFF520GFL
+  biosample: naive thymus-derived CD4-positive, alpha-beta T cell
+  biosample_summary: Homo sapiens naive thymus-derived CD4-positive, alpha-beta T
+    cell male adult (35 years)
+- accession: ENCFF571GTF
+  biosample: activated naive CD4-positive, alpha-beta T cell
+  biosample_summary: Homo sapiens activated naive CD4-positive, alpha-beta T cell
+    male adult (43 years) treated with anti-CD3 and anti-CD28 coated beads for 36
+    hours
+- accession: ENCFF958DWQ
+  biosample: CD4-positive, alpha-beta T cell
+  biosample_summary: Homo sapiens CD4-positive, alpha-beta T cell male adult (20 years)
+- accession: ENCFF962EDB
+  biosample: activated CD4-positive, alpha-beta T cell
+  biosample_summary: Homo sapiens activated CD4-positive, alpha-beta T cell male adult
+    (20 years) treated with anti-CD3 and anti-CD28 coated beads for 36 hours
+- accession: ENCFF980NXK
+  biosample: activated CD4-positive, alpha-beta memory T cell
+  biosample_summary: Homo sapiens activated CD4-positive, alpha-beta memory T cell
+    male adult (43 years) treated with anti-CD3 and anti-CD28 coated beads for 36
+    hours

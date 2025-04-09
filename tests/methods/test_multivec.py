@@ -57,16 +57,16 @@ def test_make_multivec():
             chrom_lengths = f["chroms"]["length"][:]
             assert len(chrom_names) == 2, "Incorrect number of chromosomes"
             assert all(name.decode() in chrom_sizes for name in chrom_names), "Chromosome names mismatch"
-            assert all(length == chrom_sizes[name.decode()] for name, length in zip(chrom_names, chrom_lengths)), (
-                "Chromosome lengths mismatch"
-            )
+            assert all(
+                length == chrom_sizes[name.decode()] for name, length in zip(chrom_names, chrom_lengths)
+            ), "Chromosome lengths mismatch"
 
             # Check data structure
             assert "resolutions" in f, "Resolutions group is missing"
             res_group = f["resolutions"][str(base_res)]
-            assert set(feature_names).issubset(set(res_group.attrs["row_infos"].astype(str))), (
-                "Feature names mismatch in attributes"
-            )
+            assert set(feature_names).issubset(
+                set(res_group.attrs["row_infos"].astype(str))
+            ), "Feature names mismatch in attributes"
 
             # Validate data integrity for the highest resolution level
             for chrom in chrom_sizes.keys():
