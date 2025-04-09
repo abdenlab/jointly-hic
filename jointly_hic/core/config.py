@@ -6,7 +6,7 @@ from pydantic import BaseModel, Field
 
 
 class JointlyConfiguration(BaseModel):
-    """Configuration for jointly_hic.
+    """Configuration for Jointly.
 
      Run PCA or NMF on Hi-C contact matrices (in mcool format) from multiple samples using
         incremental embedding algorithm.

@@ -24,10 +24,10 @@ logger = logging.getLogger("joint_pca")
 class JointlyDecomposer:
     """Main command class for Joint PCA Hi-C.
 
-    JointPCADecomposer performs incremental PCA or NMF docomposition of multiple input 3D chromatin contact frequency
-    matrices from mcool files. JointPCADecomposer can be run from the command line or imported as a module. It takes a
-    JointPCAConfig object as input and returns a tuple of the output embeddings and a PostProcessingConfig object,
-    for use configuring the post-processing step. Use JointPCADecomposer.run() to run the decomposition.
+    JointlyDecomposer performs incremental PCA or NMF docomposition of multiple input 3D chromatin contact frequency
+    matrices from mcool files. JointlyDecomposer can be run from the command line or imported as a module. It takes a
+    JointlyConfig object as input and returns a tuple of the output embeddings and a PostProcessingConfig object,
+    for use configuring the post-processing step. Use JointlyDecomposer.run() to run the decomposition.
 
     The fields in the configuration are:
         mcools: List of input mcool files
@@ -49,11 +49,11 @@ class JointlyDecomposer:
     """
 
     def __init__(self, configuration: JointlyConfiguration):
-        """Initialize JointPCADecomposer."""
+        """Initialize JointlyDecomposer."""
         self.configuration = configuration
         self.union_bad_bins: np.ndarray | None = None
         self._partition = None
-        logger.info("JointPCADecomposer :: configuration: \n\n%s", configuration)
+        logger.info("JointlyDecomposer :: configuration: \n\n%s", configuration)
 
         # Initialize model
         if configuration.method == "PCA":

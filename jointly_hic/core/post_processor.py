@@ -24,7 +24,7 @@ MAX_PLOT_CLUSTERS = 20
 class PostProcessor:
     """Class to handle post-processing of embeddings.
 
-    PostProcessor is the main interface to handle basic JointPCA post-processing. It takes a PostProcessingConfig
+    PostProcessor is the main interface to handle basic Jointly-HiC post-processing. It takes a PostProcessingConfig
     and a pandas DataFrame of embeddings as input. It then runs KMeans clustering and UMAP on the embeddings and
     saves the results to parquet and csv files. It also creates basic plots of the embeddings.
 
