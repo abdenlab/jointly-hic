@@ -41,7 +41,7 @@ def test_setup_logging(mocker):
 def test_main_success():
     """Test the main function when it completes successfully."""
     with (
-        patch("jointly_hic.entrypoint.JointPCACommandLineInterface") as mock_cli,
+        patch("jointly_hic.entrypoint.JointlyCommandLineInterface") as mock_cli,
         patch("jointly_hic.entrypoint.setup_logging") as mock_setup_logging,
     ):
         # Mock the parser to simulate command line arguments being parsed successfully
