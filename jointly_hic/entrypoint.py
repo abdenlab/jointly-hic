@@ -2,7 +2,7 @@
 
 import logging
 
-from jointly_hic.parser import JointPCACommandLineInterface
+from jointly_hic.parser import JointlyCommandLineInterface
 
 
 def setup_logging(args):
@@ -32,14 +32,14 @@ def setup_logging(args):
 def main():
     """Run the jointly_hic program."""
     # Parse arguments as dispatch subcommand
-    parser = JointPCACommandLineInterface().parser
+    parser = JointlyCommandLineInterface().parser
     args = parser.parse_args()
     logger = setup_logging(args)
     try:
-        logger.info("Starting joint PCA")
+        logger.info("Starting jointly-hic")
         args.func(args)
-        logger.info("Finished joint PCA")
+        logger.info("Finished jointly-hic")
     except Exception as e:
-        logger.exception("Error running joint PCA")
+        logger.exception("Error running jointly-hic")
         logger.exception(e)
         raise e

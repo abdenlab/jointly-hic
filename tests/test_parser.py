@@ -1,11 +1,11 @@
 from unittest.mock import MagicMock
 
-from jointly_hic.parser import JointPCACommandLineInterface
+from jointly_hic.parser import JointlyCommandLineInterface
 
 
 def test_joint_pca_cli_embedding(mocker):
     """Test JointPCACommandLineInterface for embedding."""
-    parser = JointPCACommandLineInterface()
+    parser = JointlyCommandLineInterface()
 
     # Test parsing arguments for embedding
     args = parser.parser.parse_args(
@@ -22,7 +22,7 @@ def test_joint_pca_cli_embedding(mocker):
 
 def test_joint_pca_cli_post(mocker):
     """Test JointPCACommandLineInterface fpr parser."""
-    parser = JointPCACommandLineInterface()
+    parser = JointlyCommandLineInterface()
 
     # Test parsing arguments for post-processing
     args = parser.parser.parse_args(
@@ -43,7 +43,7 @@ def test_joint_pca_cli_post(mocker):
 
 def test_joint_pca_cli_trajectory(mocker):
     """Test JointPCACommandLineInterface for trajectory analyzer."""
-    parser = JointPCACommandLineInterface()
+    parser = JointlyCommandLineInterface()
 
     # Test parsing arguments for trajectory analysis
     args = parser.parser.parse_args(

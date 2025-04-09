@@ -78,17 +78,17 @@ jointly -h
 
 ### Input Data Preparation
 
-1. Prepare your Hi-C data as `.mcool` files, binned and balanced at your planned analysis resolution. (We recommend using: [Distiller for alignment](https://github.com/open2c/distiller-nf), [cooler for pre-processing](https://github.com/open2c/cooler), [hictk for file conversion](https://github.com/paulsengroup/hictk))
+1. Prepare your Hi-C data as `.mcool` files, binned and balanced at your planned analysis resolution. (We recommend using: [Distiller for alignment](https://github.com/open2c/distiller-nf), [cooler for pre-processing](https://github.com/open2c/cooler), and [hictk for file conversion](https://github.com/paulsengroup/hictk))
 2. Balance your data using `cooler balance`.
-3. (Optional) Create metadata CSV or YAML files with ENCODE accessions of experiment metadata and signal tracks (Examine the example notebooks for more information).
+3. (Optional) Create metadata CSV or YAML files with ENCODE accessions of experiment metadata and signal tracks (examine the example notebooks for more information).
 
 ### Embedding
 
 The primary compute module of `jointly-hic` is through `embed`.
 This will take a list of input `mcool` files and create a joint decomposition using the provided method, resolution, genome and number of components.
 `jointly-embed` will run the post-processing and trajectory modules with default parameters, which is good for many use cases.
-The output files are vertically stacked tables on bins, embeddings, clustering and UMAP visualizations for all samples, stacked on top of each other.
-Some useful plots, lots, and information will be printed and saved.
+The output files are vertically stacked tables of bins, embeddings, clustering and UMAP visualizations for all samples, stacked on top of each other.
+Some useful plots, logs, and information will be printed and saved.
 
 ```bash
 jointly embed \
@@ -122,11 +122,10 @@ jointly trajectory \
 
 ### JointDb Database
 
-Part of `jointly-hic` is the `JointDb` database, a powerful way to integrate embeddings from `jointly embed` with ChIP-seq, ATAC-seq, RNA-seq or other epigenetic signal tracks.
+Part of `jointly-hic` is the `JointDb` database module, a powerful way to integrate embeddings from `jointly embed` with ChIP-seq, ATAC-seq, RNA-seq or other epigenetic signal tracks.
 This requires extensive metadata, and we recommend examining the example notebooks and hdf5db source code for more information.
 Creation of a `JointDb` database requires 1) Experiment Metadata in YAML format and 2) (Optional) ENCODE track metadata in YAML format.
-U
-se `embedding2yaml` to extract experiment metadata from the post processed embeddings.
+Use `embedding2yaml` to extract experiment metadata from the post processed embeddings.
 
 ```bash
 jointly embedding2yaml \
@@ -158,10 +157,10 @@ jointly hdf5db \
 The output of the `jointly-hic` tool includes a set of files that contain the results of the analysis. The files are saved with the prefix specified by the `--output` option.
 
 ### Data Files
+- `*_post_processed.pq` / `*_post_processed.csv.gz`: Rescaled embeddings, clustering and visualization table. (This is the main output)
 - `*_embeddings.pq` and `*_embeddings.csv.gz`: Raw Hi-C embeddings.
-- `*_model.pkl.gz`: Serialized decomposition model (PCA or NMF).
+- `*_model.pkl.gz`: Trained sklearn decomposition model (PCA, NMF or SVD).
 - `*_log.txt`: Execution log.
-- `*_post_processed.pq` / `*_post_processed.csv.gz`: Rescaled UMAP and clustering results.
 - `*_trajectories.pq` / `*_trajectories.csv.gz`: Trajectory analysis results.
 - `*jointly_output.h5`: HDF5 database of all embeddings, metadata, and track info (if using `hdf5db`).
 
