@@ -20,6 +20,7 @@ dependencies = [
     "cython>3.0.5",
     "datashader>=0.17.0",
     "leidenalg>=0.10.1",
+    "matplotlib>=3.6.0",
     "numpy>=2.1",
     "pandas>=2.1",
     "pyarrow>=14",
@@ -31,18 +32,20 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = [
-    "pre-commit>=3.5.0",
+    "pre-commit>=4.0.0",
     "isort>=5.12.0",
-    "pytest>=7.4.3",
+    "pytest>=8.1.0",
     "pytest-mock>=3.12.0",
     "pytest-cov>=4.1.0",
-    "ruff>=0.2.0",
-    "hatch"
+    "ruff>=0.10.0",
+    "hatch>=1.10.0"
 ]
 notebook = [
+    "black>=25.0",
+    "jupyter-black>=0.4.0",
     "jupyter>=1.0.0",
     "jupyterlab>=4.0.10",
-    "plotly>=5.18.0",
+    "plotly>=5.18.0"
 ]
 
 [project.scripts]

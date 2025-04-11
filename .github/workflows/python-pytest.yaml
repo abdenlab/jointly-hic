@@ -9,6 +9,9 @@ on:
 jobs:
   build:
     name: Run regression tests
+    permissions:
+      contents: read
+      pull-requests: write
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false

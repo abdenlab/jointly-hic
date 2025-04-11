@@ -10,4 +10,4 @@ RUN apt-get update && apt-get install -y \
 
 WORKDIR /app
 COPY . /app
-RUN pip install --no-cache-dir -e .
+RUN pip install --no-cache-dir -e '.[dev,notebook]'
