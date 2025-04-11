@@ -6,7 +6,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
-## [1.0.0] - April 8, 2025
+## [1.0.0] - April 11, 2025
 
 ### Added
 
@@ -16,7 +16,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
   - `post-process`: UMAP dimensionality reduction and k-means clustering
   - `trajectory`: Trajectory inference using k-means and UMAP projections
   - `embedding2yaml`: Extract metadata from embeddings to generate experiment YAML
-  - `tracks2yaml`: Convert CSV metadata into YAML for signal track registration
+  - `tracks2yaml`: Convert CSV metadata into YAML for signal track ingestion
   - `hdf5db`: Build a compressed HDF5 database (JointDb) integrating Hi-C embeddings and epigenetic signal data
 
 #### Input & Output
