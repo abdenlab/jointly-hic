@@ -206,6 +206,14 @@ We use GitHub Actions for continuous integration and deployment.
 
 This project is licensed under the GNU GPL (version 3). See the [LICENSE](LICENSE) file for details.
 
+## Citation
+
+Please cite this work if you use it:
+
+```
+Reimonn, Thomas & Abdennur, Nezar. (2025). abdenlab/jointly-hic: Release v1.0.1 (v1.0.1). Zenodo. https://doi.org/10.5281/zenodo.15198530
+```
+
 ---
 
 Thank you for your interest in `jointly-hic`. We hope this tool aids your research and helps you uncover new insights into chromatin organization and 3D genome structure.
