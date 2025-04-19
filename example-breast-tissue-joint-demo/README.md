@@ -1,0 +1,1 @@
+Use HiC data from the paper Choppavarapu, Lavanya et al. Cell Reports, Volume 44, Issue 4, 115450 and ATAC-seq, ChIP-seq, RNA-seq, DNase-seq profiling of MCF-7 cell line and healthy breast tissues from human donors
