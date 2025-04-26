@@ -34,8 +34,5 @@ Using Hi-C profiling, *Choppavarapu et al.* analyzed **a cohort of 12 breast tis
 Endocrine therapy, such as tamoxifen, is a standard treatment for estrogen receptor-positive (ER⁺) breast cancer. However, tamoxifen resistance remains a major clinical challenge. Many factors contribute to this resistance, such as mutations in the estrogen receptor, changes in co-regulatory proteins, etc.. *Choppavarapu et al.* highlighted that although recent studies have shed light on genetic drivers and differences among breast cancers, they have primarily focused on copy number and gene expression data. To gain a more comprehensive understanding of treatment resistance and tumor diversity, *Choppavarapu et al.* set out to investigate breast cancer at the three-dimensional (3D) genome level, particularly the differences in chromatin architecture across patient tumors.
 
 ### Jointly analysis 
-In the analysis of this demo, ```Jointly-HiC``` serves as the **analytical backbone** for integrating chromatin interaction data from **Hi-C** with regulatory signals from **ATAC-seq**, **ChIP-seq**, **RNA-seq**, and **DNase-seq**. It enables **multi-scale visualization and clustering** of chromatin contact maps to reveal structural heterogeneity in breast cancer.
-
-
-
+In the analysis of this demo, ```Jointly-HiC``` serves as the **analytical backbone** for integrating chromatin interaction data from **Hi-C** with regulatory signals from **ATAC-seq**, **ChIP-seq**, **RNA-seq**, and **DNase-seq**. It helps to identify tumor-specific structural features and correlate them with **chromatin accessibility** and **gene expression changes**.
 
