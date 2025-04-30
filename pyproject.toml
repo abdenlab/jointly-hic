@@ -7,6 +7,7 @@ name = "jointly-hic"
 description = "Genomics research toolkit for jointly embedding Hi-C 3D chromatin contact matrices into the same vector space"
 authors = [
     {name = "Thomas Reimonn", email = "thomas.reimonn@umassmed.edu"},
+    {name = "Guoyun Chen", email = "guoyun.chen5@umassmed.edu"},
     {name = "Nezar Abdennur", email = "nezar.abdennur@umassmed.edu"},
 ]
 readme = "README.md"

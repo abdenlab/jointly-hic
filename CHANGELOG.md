@@ -6,6 +6,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [1.0.2] - April 30, 2025
+
+### Added
+
+#### Examples
+- `immune-joint-analysis`: Demonstrates the use of the `jointly-hic` toolkit for joint analysis of CD4+ and CD8+ T cell Hi-C and ChIP-seq data available via the ENCODE portal.
+- `breast-tissue-joint-analysis`: Demonstrates the use of the `jointly-hic` toolkit for joint analysis of human breast tissue Hi-C data (*Choppavarapu et al.*), along with breast tissue and MCF-7 cell ChIP-seq, RNA-seq, DNase-seq, and ATAC-seq data from the ENCODE portal.
+
+---
+
 ## [1.0.0] - April 11, 2025
 
 ### Added
