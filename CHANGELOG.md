@@ -6,6 +6,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [1.0.3] - Octoboer 15, 2025
+
+### Fixed
+- Python 3.10 or higher is required. Update pyproject.toml & documentation to reflect this.
+
+---
+
 ## [1.0.2] - April 30, 2025
 
 ### Added
