@@ -113,12 +113,12 @@ class SparseIncrementalSVD(_BasePCA):
         self.explained_variance_ = None
         self.explained_variance_ratio_ = None
 
-        X = self._validate_data(
-            X,
-            accept_sparse=["csr", "csc", "lil"],
-            copy=self.copy,
-            dtype=[np.float64, np.float32],
-        )
+        # X = self._validate_params(
+        #     X,
+        #     accept_sparse=["csr", "csc", "lil"],
+        #     copy=self.copy,
+        #     dtype=[np.float64, np.float32],
+        # )
         n_samples, n_features = X.shape
 
         if self.batch_size is None:

@@ -202,7 +202,7 @@ def create_dotplot(
 
     # Plotting
     plot_df = pd.DataFrame(plot_data)
-    fig, ax = plt.subplots(figsize=(8, 4))
+    _, ax = plt.subplots(figsize=(8, 4))
     sns.scatterplot(
         data=plot_df, x="Cluster", y="Signal", size="Fraction", hue="Mean", ax=ax, legend=False, palette="seismic"
     )

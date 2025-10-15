@@ -42,11 +42,12 @@ With jointly-hic, researchers can uncover patterns of 3D genome organization at 
 
 ## Installation
 
-`Jointly-hic` can be installed via `pip` or a pre-built docker image is available on `GHRC`. It can also be installed from source.
+Python version 3.10 or higher is required. `jointly-hic` can be installed via `pip`. A pre-built docker image is available on `GHRC`. The package  can also be installed from source.
 
 ### Install from PyPI
 
 ```bash
+# Requires python version >= 3.10
 pip install jointly-hic
 ```
 
