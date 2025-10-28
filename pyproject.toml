@@ -9,6 +9,7 @@ authors = [
     {name = "Thomas Reimonn", email = "thomas.reimonn@umassmed.edu"},
     {name = "Guoyun Chen", email = "guoyun.chen5@umassmed.edu"},
     {name = "Nezar Abdennur", email = "nezar.abdennur@umassmed.edu"},
+    {name = "Hoang Tran", email ="hoang.tran5@umassmed.edu"}
 ]
 readme = "README.md"
 license = {text = "GPL-3.0"}
