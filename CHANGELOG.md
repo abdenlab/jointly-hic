@@ -6,7 +6,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
-## [1.0.3] - Octoboer 15, 2025
+## [1.0.4] - October 31, 2025
+
+### Added
+- Add: support for NCBI or UCSC genomes by name, based off of: https://github.com/open2c/bioframe/blob/main/bioframe/io/data/_assemblies.yml
+- Add Hoang Tran as a package author
+
+---
+
+## [1.0.3] - October 15, 2025
 
 ### Fixed
 - Python 3.10 or higher is required. Update pyproject.toml & documentation to reflect this.
