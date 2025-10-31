@@ -87,10 +87,9 @@ class JointlyCommandLineInterface:
         )
         embed_parser.add_argument(
             "--assembly",
-            help="Genome assembly name used for alignment (e.g. hg38, mm10)",
+            help="Genome assembly name (UCSC or NCBI) used for alignment (e.g. hg38, mm10, ce11)",
             required=True,
             type=str,
-            choices=["hg38", "mm10", "hg19", "mm9"],
         )
         embed_parser.add_argument(
             "--output",
