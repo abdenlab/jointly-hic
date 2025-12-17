@@ -146,8 +146,13 @@ class JointlyDecomposer:
         return self._partition
 
     def get_chromosome_sizes(self) -> pd.Series:
-        """Download chromosome sizes using bioframe."""
-        chromosome_sizes = bioframe.fetch_chromsizes(self.configuration.assembly.lower())
+        """Obtain chromosome sizes from cooler or using bioframe."""
+        if self.configuration.assembly.lower() == "unknown":
+            chromosome_sizes = Cooler(
+                f"{self.configuration.mcools[0]}::/resolutions/{self.configuration.resolution}"
+            ).chromsizes
+        else:
+            chromosome_sizes = bioframe.fetch_chromsizes(self.configuration.assembly.lower())
         # chromosome_sizes is a pandas Series with chromosome names as index and chromosome sizes as values
         # Filter to only the first chrom_limit chromosomes
         chromosome_sizes = chromosome_sizes.iloc[: self.configuration.chrom_limit]
