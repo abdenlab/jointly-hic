@@ -148,7 +148,9 @@ class JointlyDecomposer:
     def get_chromosome_sizes(self) -> pd.Series:
         """Obtain chromosome sizes from cooler or using bioframe."""
         if self.configuration.assembly.lower() == "unknown":
-            chromosome_sizes = Cooler(f"{self.configuration.mcools[0]}::/resolutions/{self.configuration.resolution}").chromsizes
+            chromosome_sizes = Cooler(
+                f"{self.configuration.mcools[0]}::/resolutions/{self.configuration.resolution}"
+            ).chromsizes
         else:
             chromosome_sizes = bioframe.fetch_chromsizes(self.configuration.assembly.lower())
         # chromosome_sizes is a pandas Series with chromosome names as index and chromosome sizes as values
