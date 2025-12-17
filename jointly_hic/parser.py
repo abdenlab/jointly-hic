@@ -86,12 +86,6 @@ class JointlyCommandLineInterface:
             type=int,
         )
         embed_parser.add_argument(
-            "--assembly",
-            help="Genome assembly name (UCSC or NCBI) used for alignment (e.g. hg38, mm10, ce11)",
-            required=True,
-            type=str,
-        )
-        embed_parser.add_argument(
             "--output",
             help="Prefix for output files (Default: output_<datetime>)",
             required=False,
@@ -148,6 +142,13 @@ class JointlyCommandLineInterface:
             required=False,
             type=int,
             default=10000,
+        )
+        embed_parser.add_argument(
+            "--assembly",
+            help="Optional genome assembly name (UCSC or NCBI) used for alignment (e.g. hg38, mm10, ce11)",
+            required=False,
+            type=str,
+            default="unknown",
         )
         embed_parser.set_defaults(func=self.run_embedding)
 
