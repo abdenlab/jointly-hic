@@ -6,6 +6,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [1.0.5] - December 29, 2025
+
+### Updated
+- "assembly" argument is optional. Assembly is inferred from Cooler if possible, with fallback to optional argument.
+
+---
+
 ## [1.0.4] - October 31, 2025
 
 ### Added
